@@ -6,9 +6,8 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import db from '@/db/db'
 import { CheckCircle2, MoreVertical, XCircle } from 'lucide-react'
 import { formatCurrency, formatNumber } from '@/lib/formatters'
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@radix-ui/react-dropdown-menu'
 import { ActiveToggleDropdownItem, DeleteDropdownItem } from './_components/ProductAction'
-import { DropdownMenuSeparator } from '@/components/ui/dropdown-menu'
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuSeparator } from '@/components/ui/dropdown-menu'
 
 const AdminProductsPage = () => {
   return (
@@ -68,7 +67,7 @@ const ProductsTable = async () => {
                 :
                 <>
                   <span className='sr-only'>Unavailable</span>
-                  <XCircle />
+                  <XCircle className='stroke-destructive'/>
                 </>
               }
             </TableCell>
@@ -93,8 +92,8 @@ const ProductsTable = async () => {
                     </Link>
                   </DropdownMenuItem>
                   <ActiveToggleDropdownItem id={product.id} isAvailableForPurchase={product.isAvailableForPurchase} />
-                  <DropdownMenuSeparator/>
-                  <DeleteDropdownItem id={product.id} disabled={product._count.orders >0}/>
+                  <DropdownMenuSeparator />
+                  <DeleteDropdownItem id={product.id} disabled={product._count.orders > 0} />
                 </DropdownMenuContent>
               </DropdownMenu>
             </TableCell>

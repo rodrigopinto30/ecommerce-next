@@ -31,16 +31,16 @@ const getUserData = async () => {
   }
 }
 
-const getProductData = async ()=>{
+const getProductData = async () => {
   const [activeCount, inactiveCount] = await Promise.all([
-    db.product.count({ where: {isAvailableForPurchase: true }}),
-    db.product.count({ where: {isAvailableForPurchase: true }})
+    db.product.count({ where: { isAvailableForPurchase: true } }),
+    db.product.count({ where: { isAvailableForPurchase: true } })
   ]);
-  
+
   return { activeCount, inactiveCount }
 }
 
-const wait =(duration: number)=>{
+const wait = (duration: number) => {
   return new Promise(resolve => setTimeout(resolve, duration));
 }
 const AdminDashboard = async () => {
@@ -52,7 +52,7 @@ const AdminDashboard = async () => {
   ]);
 
   return (
-    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       <DashboardCard
         title='Sales 33.03'
         subtitle={`${formatNumber(salesData.numberOfSales)} Orders`}
