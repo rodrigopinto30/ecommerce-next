@@ -53,6 +53,8 @@ export async function addProduct(prevState: unknown, formData: FormData) {
     }
   });
 
+  revalidatePath("/");
+  revalidatePath("/products")
   redirect("/admin/products");
 }
 
@@ -63,6 +65,8 @@ export async function toggleProductAvailability(id: string, isAvailableForPurcha
       isAvailableForPurchase
     }
   })
+  revalidatePath("/");
+  revalidatePath("/products")
 }
 
 export async function deleteProduct(id: string) {
@@ -72,6 +76,9 @@ export async function deleteProduct(id: string) {
   console.log(product)
   await fs.unlink(product.filePath);
   await fs.unlink(`public${product.imagePath}`);
+
+  revalidatePath("/");
+  revalidatePath("/products")
 }
 
 const editSchema = addSchema.extend({
@@ -118,6 +125,9 @@ export async function updateProduct(id: string, prevState: unknown, formData: Fo
       imagePath: `/products/${path.basename(imagePath)}`
     }
   });
+
+  revalidatePath("/");
+  revalidatePath("/products")
 
   redirect("/admin/products");
 }

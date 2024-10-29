@@ -6,23 +6,25 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { ProductCard, ProductCardSkeleton } from '../components/ProductCard';
+import { cache } from '@/lib/cache';
 
-const getMostPopularProducts = () => {
+const getMostPopularProducts = cache(() => {
   return db.product.findMany({
     where: { isAvailableForPurchase: true },
     orderBy: { orders: { _count: "desc" } },
     take: 6
-  });
-}
+  })
+}, ["/", "getMostPopularProducts"], {revalidated: 60 * 60 * 24});
 
-const getNewestProducts = () => {
+const getNewestProducts = cache(() => {
   return db.product.findMany({
     where: { isAvailableForPurchase: true },
     orderBy: { createdAt: "desc" },
     take: 6
-  });
-}
-// 2.00.57
+  })
+}, ["/", "getNewestProducts"]);
+// 2:10:10
+
 const HomePage = () => {
   return (
     <main className='space-y-12'>
