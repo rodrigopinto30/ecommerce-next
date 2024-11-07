@@ -23,7 +23,6 @@ const getNewestProducts = cache(() => {
     take: 6
   })
 }, ["/", "getNewestProducts"]);
-// 2:10:10
 
 const HomePage = () => {
   return (
