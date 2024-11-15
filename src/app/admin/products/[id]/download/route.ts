@@ -17,7 +17,8 @@ export async function GET(req: NextRequest, {params: {id}}: {params: {id:string}
 
     return new NextResponse(file, {
         headers: {
-            "Content-Disposition": `attachment; filename="${product.filePath}.${extension}"`,
+            "Content-Disposition": `attachment; 
+            filename="${product.filePath}.${extension}"`,
             "Content-Length": size.toString(),
         }
     });
