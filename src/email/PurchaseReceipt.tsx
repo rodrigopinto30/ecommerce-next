@@ -5,24 +5,28 @@ import { v4 as uuidv4 } from 'uuid';
 
 type PurchaseReceiptEmailProps = {
     product: {
-        name: string
+        name: string; 
+        description: string,
+        imagePath: string
     },
     order: { 
         id: string; 
         createdAt: Date; 
-        pricePaidIncents: number;
+        pricePaidInCents: number;
     },
     downloadVerificationId: string
 }
 
 PurchaseReceiptEmail.PreviewProps = {
     product: {
-        name: "Product name"
+        name: "Product name",
+        description: "Some description",
+        imagePath: "/public/products/50041951-0f87-4274-aa33-8a21b4c9ca52-especie-variedad.png"
     },
     order: {
         id: uuidv4(),
         createdAt: new Date(),
-        pricePaidIncents: 10000
+        pricePaidInCents: 10000
     },
     downloadVerificationId: uuidv4()
 } satisfies PurchaseReceiptEmailProps
